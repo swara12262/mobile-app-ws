@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class MobileAppWsApplication {
 
 	public static void main(String[] args) {
-		System.out.print("HEllo");
 		SpringApplication.run(MobileAppWsApplication.class, args);
 	}
 
