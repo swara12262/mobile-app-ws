@@ -1,20 +1,42 @@
-package com.app.ws.shared.dto;
+package com.app.ws.io.entity;
 
 import java.io.Serializable;
 
-//class will be shared across all the layers to transfer user data hence USerDto
-public class UserDto implements Serializable {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
-	private static final long serialVersionUID = -8845886151162292889L;
-	private long id;
+//used to persist data into database
+@Entity(name = "users")
+public class UserEntity implements Serializable {
+
+	private static final long serialVersionUID = 7073744539199491834L;
+
+	@Id
+	@GeneratedValue
+	private long id; // primary key and will be autoincremented everytime a new record is inserted
+						// into db
+
+	@Column(nullable = false)
 	private String userId;
+
+	@Column(nullable = false, length = 50)
 	private String firstName;
+
+	@Column(nullable = false, length = 50)
 	private String lastName;
+
+	@Column(nullable = false, length = 100)
 	private String email;
-	private String password;
+
+	@Column(nullable = false)
 	private String encryptedPassword;
+
 	private String emailVerificationToken;
-	private Boolean emailVerificationStatus =false;
+
+	@Column(nullable = false)
+	private Boolean emailVerificationStatus = false;
 
 	public long getId() {
 		return id;
@@ -54,14 +76,6 @@ public class UserDto implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public String getEncryptedPassword() {
