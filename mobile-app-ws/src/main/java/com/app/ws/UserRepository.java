@@ -8,7 +8,5 @@ import com.app.ws.io.entity.UserEntity;
 //UserEntity needs to be persisted and long is the type of Id in userEntity
 @Repository
 public interface UserRepository extends CrudRepository<UserEntity, Long> {
-	
-	UserEntity findUserByEmail(String email); 
 
 }

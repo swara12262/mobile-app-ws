@@ -1,14 +1,33 @@
 package com.app.ws.service.impl;
 
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.app.ws.UserRepository;
+import com.app.ws.io.entity.UserEntity;
 import com.app.ws.service.UserService;
 import com.app.ws.shared.dto.UserDto;
 
 public class UserServiceImpl implements UserService{
 
+	@Autowired
+	UserRepository userRepository; 
+	
 	@Override
 	public UserDto createUser(UserDto user) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		UserEntity userEntity=new UserEntity();
+		BeanUtils.copyProperties(user, userEntity);
+		
+		userEntity.setEncryptedPassword("test");
+		userEntity.setUserId("testUserid");
+		
+		UserEntity storeUserDetails = userRepository.save(userEntity);
+		
+		UserDto returnValue=new UserDto();
+		BeanUtils.copyProperties(storeUserDetails, returnValue);
+
+		return returnValue;
 	}
 
 }
