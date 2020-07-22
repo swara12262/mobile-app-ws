@@ -1,5 +1,5 @@
 package com.app.ws.ui.model.request;
-//class contains data to store in database received from http post request
+//class used to convert incoming json to java object
 public class UserDetailsRequestModel {
 	private String firstName;
 	private String lastName;

@@ -1,5 +1,5 @@
 package com.app.ws.ui.model.reponse;
-//class will return back this response object to http post request
+//class used to convert java object into outgoing json response 
 public class UserRest {
 	private String userId;
 	private String firstName;
