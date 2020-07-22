@@ -1,10 +1,18 @@
-package com.app.ws.ui.model.request;
-//class contains data to store in database received from http post request
-public class UserDetailsRequestModel {
+package com.app.ws.ui.model.reponse;
+//class will return back this response object to http post request
+public class UserRest {
+	private String userId;
 	private String firstName;
 	private String lastName;
 	private String email;
-	private String password;
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 
 	public String getFirstName() {
 		return firstName;
@@ -28,14 +36,6 @@ public class UserDetailsRequestModel {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 }
