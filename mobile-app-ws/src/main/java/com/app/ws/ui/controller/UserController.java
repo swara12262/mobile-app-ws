@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.ws.service.UserService;
 import com.app.ws.shared.dto.UserDto;
 import com.app.ws.ui.model.reponse.UserRest;
 import com.app.ws.ui.model.request.UserDetailsRequestModel;
@@ -16,6 +17,7 @@ import com.app.ws.ui.model.request.UserDetailsRequestModel;
 @RestController
 @RequestMapping("users") // http://localhost:8080/users
 public class UserController {
+	UserService userService;
 
 	@GetMapping
 	public String getUser() {
