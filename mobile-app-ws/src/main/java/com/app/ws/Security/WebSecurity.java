@@ -31,7 +31,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		//disable authenticatopn for post as it'll be authorised and enable  authentication for all others
-		http.csrf().disable().authorizeRequests().antMatchers(HttpMethod.POST, "/users").permitAll().anyRequest().authenticated();
+		http.csrf().disable().authorizeRequests().antMatchers(HttpMethod.POST, SecurityConstants.SIGN_UP_URL).permitAll()
+		.anyRequest().authenticated().and().addFilter(new AuthenticationFilter(authenticationManager()));
 	} 
 	
 	
