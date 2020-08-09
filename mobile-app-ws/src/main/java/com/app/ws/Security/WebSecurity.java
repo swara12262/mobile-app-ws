@@ -32,9 +32,15 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
 		//disable authenticatopn for post as it'll be authorised and enable  authentication for all others
 		http.csrf().disable().authorizeRequests().antMatchers(HttpMethod.POST, SecurityConstants.SIGN_UP_URL).permitAll()
-		.anyRequest().authenticated().and().addFilter(new AuthenticationFilter(authenticationManager()));
+		.anyRequest().authenticated().and().addFilter(getAuthenticationFilter());
 	} 
 	
+	public AuthenticationFilter getAuthenticationFilter() throws Exception {
+		
+		final AuthenticationFilter filter =  new AuthenticationFilter(authenticationManager());
+		filter.setFilterProcessesUrl("/users/login");
+		return filter;
+	}
 	
 
 }
