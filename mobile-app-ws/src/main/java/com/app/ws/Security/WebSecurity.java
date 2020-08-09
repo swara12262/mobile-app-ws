@@ -5,6 +5,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.app.ws.service.UserService;
@@ -33,7 +34,9 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 		//disable authenticatopn for post as it'll be authorised and enable  authentication for all others
 		http.csrf().disable().authorizeRequests().antMatchers(HttpMethod.POST, SecurityConstants.SIGN_UP_URL).permitAll()
 		.anyRequest().authenticated().and().addFilter(getAuthenticationFilter())
-		.addFilter(new AuthorizationFilter(authenticationManager()));
+		.addFilter(new AuthorizationFilter(authenticationManager()))
+		.sessionManagement()
+		.sessionCreationPolicy(SessionCreationPolicy.STATELESS); //making rest api statless
 	} 
 	
 	public AuthenticationFilter getAuthenticationFilter() throws Exception {
