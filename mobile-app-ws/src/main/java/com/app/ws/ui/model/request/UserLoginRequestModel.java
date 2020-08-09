@@ -1,5 +1,6 @@
 package com.app.ws.ui.model.request;
 
+// Default login url : http://localhost:8080/login 
 public class UserLoginRequestModel {
 
 	private String email;
