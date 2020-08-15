@@ -73,3 +73,12 @@ Run app using command line:
 Install maven
 mvn install - to build app and it will also run unit tests
 mvn spring-boot:run - this command will run the app in apache servlet container
+
+77. Run app as java application
+mvn install - to build app and it will also run unit tests this will generate exceutable jar file
+Run using jar file in target folder of application using command.
+java -jar <jar file name>
+jar file has in built apache tomcat servlet on which it runs app but sometimes we need to run multiple apps under exusting or local 
+tomcat then we create war file.
+
+74: WAR(Web Application Archive) so that 
