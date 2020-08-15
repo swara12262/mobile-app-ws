@@ -82,3 +82,14 @@ jar file has in built apache tomcat servlet on which it runs app but sometimes w
 tomcat then we create war file.
 
 74: WAR(Web Application Archive) so that 
+*************************************************************
+MySql:
+user: root pass:Swara@12262
+user:swara pass:swara
+
+Tomcat info
+tomcat 9  on server 8085  user:swara pass:swara
+tomcat 8 on server 8081
+
+*****************************************************************
+
