@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.ws.service.UserService;
 import com.app.ws.shared.dto.UserDto;
+import com.app.ws.ui.model.reponse.ErrorMessages;
 import com.app.ws.ui.model.reponse.UserRest;
 import com.app.ws.ui.model.request.UserDetailsRequestModel;
 
@@ -36,8 +37,11 @@ public class UserController {
 
 	@PostMapping(consumes={ MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE},
 			produces= { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-	public UserRest createUser(@RequestBody UserDetailsRequestModel userDetails) {
+	public UserRest createUser(@RequestBody UserDetailsRequestModel userDetails)throws Exception
+	{
 		UserRest returnValue=new UserRest();
+		//check for required fields
+		if(userDetails.getFirstName().isEmpty())throw new Exception(ErrorMessages.MISSING_REQUIRED_FIELD.getErrorMessage());
 		
 		//copy properties received in request object in UserDto class object
 		UserDto userDto=new UserDto();
