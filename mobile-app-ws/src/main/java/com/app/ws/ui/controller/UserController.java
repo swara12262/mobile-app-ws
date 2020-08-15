@@ -42,7 +42,7 @@ public class UserController {
 	{
 		UserRest returnValue=new UserRest();
 		//check for required fields
-		if(userDetails.getFirstName().isEmpty())throw new UserServiceException(ErrorMessages.MISSING_REQUIRED_FIELD.getErrorMessage());
+		if(userDetails.getFirstName().isEmpty())throw new NullPointerException("Test: Object is null");
 		
 		//copy properties received in request object in UserDto class object
 		UserDto userDto=new UserDto();
