@@ -37,7 +37,8 @@ public class UserController {
 	}
 
 	@PostMapping(consumes={ MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE},
-			produces= { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+			produces= { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE}
+	)
 	public UserRest createUser(@RequestBody UserDetailsRequestModel userDetails)throws Exception
 	{
 		UserRest returnValue=new UserRest();
@@ -54,9 +55,21 @@ public class UserController {
 		return returnValue;
 	}
 
-	@PutMapping
-	public String updateUser() {
-		return "Update User called";
+	@PutMapping(path= "/{id}",consumes={ MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE},
+			produces= { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE}
+	)
+	public UserRest updateUser(@PathVariable String id, @RequestBody UserDetailsRequestModel userDetails) {
+		UserRest returnValue=new UserRest();
+		
+			if(userDetails.getFirstName().isEmpty())throw new NullPointerException("Test: Object is null");
+		//copy properties received in request object in UserDto class object
+		UserDto userDto=new UserDto();
+		BeanUtils.copyProperties(userDetails, userDto);
+		
+		UserDto updateUser= userService.updateUser(id, userDto);//will return value after saving our input to database
+		BeanUtils.copyProperties(updateUser, returnValue);
+		
+		return returnValue;
 	}
 
 	@DeleteMapping
