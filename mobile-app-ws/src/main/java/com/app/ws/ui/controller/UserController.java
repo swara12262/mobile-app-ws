@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.ws.exceptions.UserServiceException;
 import com.app.ws.service.UserService;
 import com.app.ws.shared.dto.UserDto;
 import com.app.ws.ui.model.reponse.ErrorMessages;
@@ -41,7 +42,7 @@ public class UserController {
 	{
 		UserRest returnValue=new UserRest();
 		//check for required fields
-		if(userDetails.getFirstName().isEmpty())throw new Exception(ErrorMessages.MISSING_REQUIRED_FIELD.getErrorMessage());
+		if(userDetails.getFirstName().isEmpty())throw new UserServiceException(ErrorMessages.MISSING_REQUIRED_FIELD.getErrorMessage());
 		
 		//copy properties received in request object in UserDto class object
 		UserDto userDto=new UserDto();
