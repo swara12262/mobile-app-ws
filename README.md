@@ -93,3 +93,48 @@ tomcat 8 on server 8081
 
 *****************************************************************
 
+86: Update software package and update java on EC2 linux server on cloud:
+1. sudo yum update---to update all present packages
+2. sudo yum install java-1.8.0
+To choose one version from multiple versions installed
+3. sudo /usr/sbin/alternatives --config java
+for compiler
+sudo /usr/sbin/alternatives --config javac
+
+4. Install apache tomcat:
+1. sudo yum install tomcat8
+--to manage tomcat :
+sudo yum install tomcat8-admin-webapps
+--to start tomcat
+sudo service tomcat8 start
+--to connect to tomcat :
+http://ec2-3-80-178-74.compute-1.amazonaws.com:8080/manager/html
+
+88:Configure tomcat users:
+1. whereis tomcat8
+2. cd usr/share/tomcat
+3. cd conf
+4. opn file tomcat-users.xml and add below  sudo vi tomcat-users.xml:
+<role rolename="manager-gui"/>
+<user username="swara" password="swara" roles="manager-gui"/>
+Enter to save file
+esc  :wq
+esq :q! to exit
+
+
+89: Download and install mysql server on EC2
+
+-sudo yum install mysql-server
+start mysql using
+--sudo service mysqld start
+
+mysql -u root -p
+
+90: DEploy application
+
+91: see if its working:
+http://ec2-3-91-229-93.compute-1.amazonaws.com:8080/mobile-app-ws/users ----To create a new user
+http://ec2-3-91-229-93.compute-1.amazonaws.com:8080/mobile-app-ws/users/login ---To login to user
+
+
+
